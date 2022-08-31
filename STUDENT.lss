@@ -1,0 +1,471 @@
+
+STUDENT.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000266  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         000000ce  00800060  00000266  000002fa  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000012  0080012e  0080012e  000003c8  2**0
+                  ALLOC
+  3 .stab         0000078c  00000000  00000000  000003c8  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      000000e2  00000000  00000000  00000b54  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .comment      0000002f  00000000  00000000  00000c36  2**0
+                  CONTENTS, READONLY
+  6 .debug_aranges 00000098  00000000  00000000  00000c65  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_info   00001375  00000000  00000000  00000cfd  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_abbrev 00000271  00000000  00000000  00002072  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_line   000004ea  00000000  00000000  000022e3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_frame  0000014c  00000000  00000000  000027d0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_str    000002ad  00000000  00000000  0000291c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_loc    000006a3  00000000  00000000  00002bc9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 13 .debug_ranges 00000088  00000000  00000000  0000326c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	11 e0       	ldi	r17, 0x01	; 1
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e6 e6       	ldi	r30, 0x66	; 102
+  3a:	f2 e0       	ldi	r31, 0x02	; 2
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	ae 32       	cpi	r26, 0x2E	; 46
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	21 e0       	ldi	r18, 0x01	; 1
+  4a:	ae e2       	ldi	r26, 0x2E	; 46
+  4c:	b1 e0       	ldi	r27, 0x01	; 1
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a0 34       	cpi	r26, 0x40	; 64
+  54:	b2 07       	cpc	r27, r18
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	92 d0       	rcall	.+292    	; 0x17e <main>
+  5a:	03 c1       	rjmp	.+518    	; 0x262 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <_Z8disp_cmdj>:
+	_delay_ms(1000);*/
+		
+		if ((x>1000)&&(x<1050) && (y>390)&&(y<500))
+		{
+	disp_cmd(0x80);
+	disp_string("1. a    2. b");
+  5e:	9c 01       	movw	r18, r24
+  60:	20 7f       	andi	r18, 0xF0	; 240
+  62:	33 27       	eor	r19, r19
+	disp_cmd(0xc0);
+  64:	28 bb       	out	0x18, r18	; 24
+  66:	98 b3       	in	r25, 0x18	; 24
+  68:	96 95       	lsr	r25
+	disp_string("3. c    4. d");
+  6a:	96 95       	lsr	r25
+  6c:	9e 5f       	subi	r25, 0xFE	; 254
+  6e:	98 bb       	out	0x18, r25	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  70:	ef e9       	ldi	r30, 0x9F	; 159
+  72:	ff e0       	ldi	r31, 0x0F	; 15
+  74:	31 97       	sbiw	r30, 0x01	; 1
+  76:	f1 f7       	brne	.-4      	; 0x74 <_Z8disp_cmdj+0x16>
+  78:	00 c0       	rjmp	.+0      	; 0x7a <_Z8disp_cmdj+0x1c>
+  7a:	00 00       	nop
+  7c:	98 b3       	in	r25, 0x18	; 24
+  7e:	92 50       	subi	r25, 0x02	; 2
+  80:	98 bb       	out	0x18, r25	; 24
+		}
+		while (1)
+		{
+		
+			
+	if ((x>130)&&(x<300) && (y>100)&&(y<250))
+  82:	82 95       	swap	r24
+  84:	80 7f       	andi	r24, 0xF0	; 240
+  86:	88 bb       	out	0x18, r24	; 24
+			 disp_num(bal);
+			 _delay_ms(1000);
+			 //break;
+		 }
+	}
+	else if ((x>200)&&(x<300) &&(y>850)&& (y<950))
+  88:	88 b3       	in	r24, 0x18	; 24
+  8a:	86 95       	lsr	r24
+  8c:	86 95       	lsr	r24
+  8e:	8e 5f       	subi	r24, 0xFE	; 254
+		 }
+		 
+	 }
+		
+	
+	else if ((x>500)&&(x<860) && (y>100)&&(y<250))
+  90:	88 bb       	out	0x18, r24	; 24
+  92:	8f e9       	ldi	r24, 0x9F	; 159
+  94:	9f e0       	ldi	r25, 0x0F	; 15
+  96:	01 97       	sbiw	r24, 0x01	; 1
+		}
+		while (1)
+		{
+		
+			
+	if ((x>130)&&(x<300) && (y>100)&&(y<250))
+  98:	f1 f7       	brne	.-4      	; 0x96 <_Z8disp_cmdj+0x38>
+  9a:	00 c0       	rjmp	.+0      	; 0x9c <_Z8disp_cmdj+0x3e>
+  9c:	00 00       	nop
+  9e:	88 b3       	in	r24, 0x18	; 24
+  a0:	82 50       	subi	r24, 0x02	; 2
+  a2:	88 bb       	out	0x18, r24	; 24
+  a4:	08 95       	ret
+
+000000a6 <_Z8lcd_initv>:
+  a6:	82 e0       	ldi	r24, 0x02	; 2
+  a8:	90 e0       	ldi	r25, 0x00	; 0
+  aa:	d9 df       	rcall	.-78     	; 0x5e <_Z8disp_cmdj>
+  ac:	88 e2       	ldi	r24, 0x28	; 40
+  ae:	90 e0       	ldi	r25, 0x00	; 0
+	{
+		 if(bal>e)
+  b0:	d6 df       	rcall	.-84     	; 0x5e <_Z8disp_cmdj>
+  b2:	8c e0       	ldi	r24, 0x0C	; 12
+  b4:	90 e0       	ldi	r25, 0x00	; 0
+  b6:	d3 df       	rcall	.-90     	; 0x5e <_Z8disp_cmdj>
+  b8:	86 e0       	ldi	r24, 0x06	; 6
+  ba:	90 e0       	ldi	r25, 0x00	; 0
+  bc:	d0 df       	rcall	.-96     	; 0x5e <_Z8disp_cmdj>
+  be:	08 95       	ret
+
+000000c0 <_Z9disp_datai>:
+  c0:	9c 01       	movw	r18, r24
+  c2:	20 7f       	andi	r18, 0xF0	; 240
+  c4:	33 27       	eor	r19, r19
+		 {
+			 bal=bal-e;
+  c6:	28 bb       	out	0x18, r18	; 24
+  c8:	28 b3       	in	r18, 0x18	; 24
+  ca:	26 95       	lsr	r18
+  cc:	26 95       	lsr	r18
+  ce:	2d 5f       	subi	r18, 0xFD	; 253
+  d0:	28 bb       	out	0x18, r18	; 24
+			 disp_cmd(0x01);
+  d2:	ef e9       	ldi	r30, 0x9F	; 159
+  d4:	ff e0       	ldi	r31, 0x0F	; 15
+  d6:	31 97       	sbiw	r30, 0x01	; 1
+  d8:	f1 f7       	brne	.-4      	; 0xd6 <_Z9disp_datai+0x16>
+  da:	00 c0       	rjmp	.+0      	; 0xdc <_Z9disp_datai+0x1c>
+  dc:	00 00       	nop
+  de:	28 b3       	in	r18, 0x18	; 24
+  e0:	23 50       	subi	r18, 0x03	; 3
+  e2:	28 bb       	out	0x18, r18	; 24
+			 _delay_ms(2);
+			 disp_cmd(0x80);
+  e4:	82 95       	swap	r24
+  e6:	92 95       	swap	r25
+  e8:	90 7f       	andi	r25, 0xF0	; 240
+			 disp_string("CONFIRMED");
+  ea:	98 27       	eor	r25, r24
+  ec:	80 7f       	andi	r24, 0xF0	; 240
+  ee:	98 27       	eor	r25, r24
+  f0:	88 bb       	out	0x18, r24	; 24
+  f2:	88 b3       	in	r24, 0x18	; 24
+  f4:	86 95       	lsr	r24
+  f6:	86 95       	lsr	r24
+  f8:	8d 5f       	subi	r24, 0xFD	; 253
+  fa:	88 bb       	out	0x18, r24	; 24
+			 _delay_ms(2);
+			 disp_cmd(0xc0);
+  fc:	8f e9       	ldi	r24, 0x9F	; 159
+  fe:	9f e0       	ldi	r25, 0x0F	; 15
+ 100:	01 97       	sbiw	r24, 0x01	; 1
+			 disp_string("Avail Bal=");
+ 102:	f1 f7       	brne	.-4      	; 0x100 <_Z9disp_datai+0x40>
+ 104:	00 c0       	rjmp	.+0      	; 0x106 <_Z9disp_datai+0x46>
+ 106:	00 00       	nop
+			 disp_cmd(0xcb);
+ 108:	88 b3       	in	r24, 0x18	; 24
+ 10a:	83 50       	subi	r24, 0x03	; 3
+ 10c:	88 bb       	out	0x18, r24	; 24
+			 disp_num(bal);
+ 10e:	08 95       	ret
+
+00000110 <_Z10usart_initv>:
+ 110:	88 e1       	ldi	r24, 0x18	; 24
+ 112:	8a b9       	out	0x0a, r24	; 10
+ 114:	8e e8       	ldi	r24, 0x8E	; 142
+ 116:	80 bd       	out	0x20, r24	; 32
+ 118:	83 e3       	ldi	r24, 0x33	; 51
+ 11a:	89 b9       	out	0x09, r24	; 9
+ 11c:	10 bc       	out	0x20, r1	; 32
+ 11e:	08 95       	ret
+
+00000120 <_Z11disp_stringPc>:
+ 120:	cf 93       	push	r28
+ 122:	df 93       	push	r29
+ 124:	ec 01       	movw	r28, r24
+ 126:	88 81       	ld	r24, Y
+ 128:	88 23       	and	r24, r24
+ 12a:	31 f0       	breq	.+12     	; 0x138 <_Z11disp_stringPc+0x18>
+			 //break;
+		 }
+		 
+		 else
+		 {
+			 disp_cmd(0x01);
+ 12c:	21 96       	adiw	r28, 0x01	; 1
+ 12e:	90 e0       	ldi	r25, 0x00	; 0
+ 130:	c7 df       	rcall	.-114    	; 0xc0 <_Z9disp_datai>
+			 disp_cmd(0x80);
+ 132:	89 91       	ld	r24, Y+
+ 134:	81 11       	cpse	r24, r1
+ 136:	fb cf       	rjmp	.-10     	; 0x12e <_Z11disp_stringPc+0xe>
+			 disp_string("Please Recharge");
+ 138:	df 91       	pop	r29
+ 13a:	cf 91       	pop	r28
+ 13c:	08 95       	ret
+
+0000013e <_Z11usart_getchv>:
+			 disp_cmd(0xc0);
+ 13e:	5f 9b       	sbis	0x0b, 7	; 11
+ 140:	fe cf       	rjmp	.-4      	; 0x13e <_Z11usart_getchv>
+ 142:	8c b1       	in	r24, 0x0c	; 12
+			 disp_string("Avail Bal=");
+ 144:	90 e0       	ldi	r25, 0x00	; 0
+ 146:	08 95       	ret
+
+00000148 <_Z10getcard_idv>:
+ 148:	cf 93       	push	r28
+			 disp_cmd(0xcb);
+ 14a:	df 93       	push	r29
+ 14c:	10 92 33 01 	sts	0x0133, r1
+			 disp_num(bal);
+ 150:	10 92 32 01 	sts	0x0132, r1
+ 154:	c0 e0       	ldi	r28, 0x00	; 0
+ 156:	d0 e0       	ldi	r29, 0x00	; 0
+ 158:	f2 df       	rcall	.-28     	; 0x13e <_Z11usart_getchv>
+ 15a:	cc 5c       	subi	r28, 0xCC	; 204
+ 15c:	de 4f       	sbci	r29, 0xFE	; 254
+ 15e:	88 83       	st	Y, r24
+ 160:	c0 91 32 01 	lds	r28, 0x0132
+ 164:	d0 91 33 01 	lds	r29, 0x0133
+ 168:	21 96       	adiw	r28, 0x01	; 1
+ 16a:	d0 93 33 01 	sts	0x0133, r29
+		 }
+		 
+	 }
+		
+	
+	else if ((x>500)&&(x<860) && (y>100)&&(y<250))
+ 16e:	c0 93 32 01 	sts	0x0132, r28
+ 172:	cc 30       	cpi	r28, 0x0C	; 12
+ 174:	d1 05       	cpc	r29, r1
+ 176:	80 f3       	brcs	.-32     	; 0x158 <_Z10getcard_idv+0x10>
+ 178:	df 91       	pop	r29
+ 17a:	cf 91       	pop	r28
+ 17c:	08 95       	ret
+
+0000017e <main>:
+ 17e:	8f ef       	ldi	r24, 0xFF	; 255
+ 180:	87 bb       	out	0x17, r24	; 23
+ 182:	84 bb       	out	0x14, r24	; 20
+ 184:	90 df       	rcall	.-224    	; 0xa6 <_Z8lcd_initv>
+ 186:	8f e9       	ldi	r24, 0x9F	; 159
+ 188:	9f e0       	ldi	r25, 0x0F	; 15
+	{
+		 if(bal>=f)
+ 18a:	01 97       	sbiw	r24, 0x01	; 1
+ 18c:	f1 f7       	brne	.-4      	; 0x18a <main+0xc>
+ 18e:	00 c0       	rjmp	.+0      	; 0x190 <main+0x12>
+ 190:	00 00       	nop
+ 192:	be df       	rcall	.-132    	; 0x110 <_Z10usart_initv>
+ 194:	80 e8       	ldi	r24, 0x80	; 128
+ 196:	90 e0       	ldi	r25, 0x00	; 0
+ 198:	62 df       	rcall	.-316    	; 0x5e <_Z8disp_cmdj>
+ 19a:	82 ec       	ldi	r24, 0xC2	; 194
+ 19c:	90 e0       	ldi	r25, 0x00	; 0
+ 19e:	c0 df       	rcall	.-128    	; 0x120 <_Z11disp_stringPc>
+		 {
+			 bal=bal-f;
+ 1a0:	d3 df       	rcall	.-90     	; 0x148 <_Z10getcard_idv>
+ 1a2:	8f e9       	ldi	r24, 0x9F	; 159
+ 1a4:	9f e0       	ldi	r25, 0x0F	; 15
+ 1a6:	01 97       	sbiw	r24, 0x01	; 1
+ 1a8:	f1 f7       	brne	.-4      	; 0x1a6 <main+0x28>
+ 1aa:	00 c0       	rjmp	.+0      	; 0x1ac <main+0x2e>
+			 disp_cmd(0x01);
+ 1ac:	00 00       	nop
+ 1ae:	81 e0       	ldi	r24, 0x01	; 1
+ 1b0:	90 e0       	ldi	r25, 0x00	; 0
+ 1b2:	55 df       	rcall	.-342    	; 0x5e <_Z8disp_cmdj>
+ 1b4:	4c e0       	ldi	r20, 0x0C	; 12
+ 1b6:	50 e0       	ldi	r21, 0x00	; 0
+ 1b8:	66 e8       	ldi	r22, 0x86	; 134
+ 1ba:	70 e0       	ldi	r23, 0x00	; 0
+ 1bc:	84 e3       	ldi	r24, 0x34	; 52
+			 _delay_ms(2);
+			 disp_cmd(0x80);
+ 1be:	91 e0       	ldi	r25, 0x01	; 1
+ 1c0:	42 d0       	rcall	.+132    	; 0x246 <strncmp>
+ 1c2:	c8 2f       	mov	r28, r24
+			 disp_string("CONFIRMED");
+ 1c4:	d9 2f       	mov	r29, r25
+ 1c6:	4c e0       	ldi	r20, 0x0C	; 12
+ 1c8:	50 e0       	ldi	r21, 0x00	; 0
+ 1ca:	68 e7       	ldi	r22, 0x78	; 120
+ 1cc:	70 e0       	ldi	r23, 0x00	; 0
+ 1ce:	84 e3       	ldi	r24, 0x34	; 52
+ 1d0:	91 e0       	ldi	r25, 0x01	; 1
+ 1d2:	39 d0       	rcall	.+114    	; 0x246 <strncmp>
+ 1d4:	08 2f       	mov	r16, r24
+			 _delay_ms(2);
+			 disp_cmd(0xc0);
+ 1d6:	19 2f       	mov	r17, r25
+ 1d8:	4c e0       	ldi	r20, 0x0C	; 12
+ 1da:	50 e0       	ldi	r21, 0x00	; 0
+			 disp_string("Avail Bal=");
+ 1dc:	6a e6       	ldi	r22, 0x6A	; 106
+ 1de:	70 e0       	ldi	r23, 0x00	; 0
+ 1e0:	84 e3       	ldi	r24, 0x34	; 52
+			 disp_cmd(0xcb);
+ 1e2:	91 e0       	ldi	r25, 0x01	; 1
+ 1e4:	30 d0       	rcall	.+96     	; 0x246 <strncmp>
+ 1e6:	28 2f       	mov	r18, r24
+			 disp_num(bal);
+ 1e8:	39 2f       	mov	r19, r25
+ 1ea:	1c 16       	cp	r1, r28
+ 1ec:	1d 06       	cpc	r1, r29
+ 1ee:	54 f0       	brlt	.+20     	; 0x204 <main+0x86>
+ 1f0:	81 e0       	ldi	r24, 0x01	; 1
+ 1f2:	90 e0       	ldi	r25, 0x00	; 0
+ 1f4:	34 df       	rcall	.-408    	; 0x5e <_Z8disp_cmdj>
+ 1f6:	80 ec       	ldi	r24, 0xC0	; 192
+ 1f8:	90 e0       	ldi	r25, 0x00	; 0
+ 1fa:	31 df       	rcall	.-414    	; 0x5e <_Z8disp_cmdj>
+ 1fc:	81 ed       	ldi	r24, 0xD1	; 209
+ 1fe:	90 e0       	ldi	r25, 0x00	; 0
+ 200:	8f df       	rcall	.-226    	; 0x120 <_Z11disp_stringPc>
+ 202:	ce cf       	rjmp	.-100    	; 0x1a0 <main+0x22>
+ 204:	10 16       	cp	r1, r16
+			 //break;
+		 }
+		 
+		 else
+		 {
+			 disp_cmd(0x01);
+ 206:	11 06       	cpc	r1, r17
+ 208:	54 f0       	brlt	.+20     	; 0x21e <main+0xa0>
+ 20a:	81 e0       	ldi	r24, 0x01	; 1
+			 disp_cmd(0x80);
+ 20c:	90 e0       	ldi	r25, 0x00	; 0
+ 20e:	27 df       	rcall	.-434    	; 0x5e <_Z8disp_cmdj>
+ 210:	80 ec       	ldi	r24, 0xC0	; 192
+			 disp_string("Please Recharge");
+ 212:	90 e0       	ldi	r25, 0x00	; 0
+ 214:	24 df       	rcall	.-440    	; 0x5e <_Z8disp_cmdj>
+ 216:	8f ed       	ldi	r24, 0xDF	; 223
+			 disp_cmd(0xc0);
+ 218:	90 e0       	ldi	r25, 0x00	; 0
+ 21a:	82 df       	rcall	.-252    	; 0x120 <_Z11disp_stringPc>
+ 21c:	c1 cf       	rjmp	.-126    	; 0x1a0 <main+0x22>
+			 disp_string("Avail Bal=");
+ 21e:	12 16       	cp	r1, r18
+ 220:	13 06       	cpc	r1, r19
+ 222:	54 f0       	brlt	.+20     	; 0x238 <main+0xba>
+			 disp_cmd(0xcb);
+ 224:	81 e0       	ldi	r24, 0x01	; 1
+ 226:	90 e0       	ldi	r25, 0x00	; 0
+ 228:	1a df       	rcall	.-460    	; 0x5e <_Z8disp_cmdj>
+			 disp_num(bal);
+ 22a:	80 ec       	ldi	r24, 0xC0	; 192
+ 22c:	90 e0       	ldi	r25, 0x00	; 0
+ 22e:	17 df       	rcall	.-466    	; 0x5e <_Z8disp_cmdj>
+ 230:	8d ee       	ldi	r24, 0xED	; 237
+ 232:	90 e0       	ldi	r25, 0x00	; 0
+ 234:	75 df       	rcall	.-278    	; 0x120 <_Z11disp_stringPc>
+ 236:	b4 cf       	rjmp	.-152    	; 0x1a0 <main+0x22>
+ 238:	80 e8       	ldi	r24, 0x80	; 128
+ 23a:	90 e0       	ldi	r25, 0x00	; 0
+ 23c:	10 df       	rcall	.-480    	; 0x5e <_Z8disp_cmdj>
+ 23e:	8a ef       	ldi	r24, 0xFA	; 250
+ 240:	90 e0       	ldi	r25, 0x00	; 0
+ 242:	6e df       	rcall	.-292    	; 0x120 <_Z11disp_stringPc>
+ 244:	ad cf       	rjmp	.-166    	; 0x1a0 <main+0x22>
+
+00000246 <strncmp>:
+ 246:	fb 01       	movw	r30, r22
+			 _delay_ms(1000);
+			 //break;
+		 }
+	}
+	else if ((x>200)&&(x<300) &&(y>850)&& (y<950))
+ 248:	dc 01       	movw	r26, r24
+ 24a:	41 50       	subi	r20, 0x01	; 1
+ 24c:	50 40       	sbci	r21, 0x00	; 0
+ 24e:	30 f0       	brcs	.+12     	; 0x25c <strncmp+0x16>
+ 250:	8d 91       	ld	r24, X+
+ 252:	01 90       	ld	r0, Z+
+ 254:	80 19       	sub	r24, r0
+ 256:	19 f4       	brne	.+6      	; 0x25e <strncmp+0x18>
+ 258:	00 20       	and	r0, r0
+ 25a:	b9 f7       	brne	.-18     	; 0x24a <strncmp+0x4>
+ 25c:	88 1b       	sub	r24, r24
+ 25e:	99 0b       	sbc	r25, r25
+ 260:	08 95       	ret
+
+00000262 <_exit>:
+ 262:	f8 94       	cli
+
+00000264 <__stop_program>:
+ 264:	ff cf       	rjmp	.-2      	; 0x264 <__stop_program>
